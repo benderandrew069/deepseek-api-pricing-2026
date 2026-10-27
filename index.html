@@ -1,0 +1,241 @@
+<!doctype html>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta content="width=device-width,initial-scale=1" name="viewport"><meta content="index,follow,max-image-preview:large" name="robots"><title>DeepSeek API Pricing 2026 & Cost Calculator | Moduck</title><meta content="Calculate DeepSeek API costs by model, cache-hit rate, token mix, and peak hours using current 2026 rates and a reusable budgeting formula." name="description"><style>*{box-sizing:border-box}body{margin:0;background:#f5f7fa;color:#202733;font:18px/1.85 system-ui,sans-serif}main{max-width:900px;margin:28px auto;padding:36px 48px;background:white;border-radius:16px}h1{font-size:36px;line-height:1.25}h2{font-size:27px;line-height:1.35;margin-top:2em}h3{font-size:22px}p{margin:1em 0}a{color:#1260a4;overflow-wrap:anywhere}code{font-size:.85em;overflow-wrap:anywhere}img{max-width:100%;height:auto}figure{margin:24px 0}figcaption,.note{font-size:14px;color:#58667b}table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.5}td,th{text-align:left;vertical-align:top;border:1px solid #dbe1e9;padding:12px;min-width:120px}.table-scroll{overflow-x:auto}li{margin:.6em 0}details{margin:18px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere}.note{padding-bottom:18px;border-bottom:1px solid #e4e9ef}@media(max-width:600px){main{margin:0;padding:24px 20px;border-radius:0}body{font-size:17px}h1{font-size:29px}h2{font-size:24px}table{font-size:14px}}</style><link href="https://benderandrew069.github.io/deepseek-api-pricing-2026/" rel="canonical"><meta content="article" property="og:type"><meta content="DeepSeek API Pricing 2026 & Cost Calculator | Moduck" property="og:title"><meta content="Calculate DeepSeek API costs by model, cache-hit rate, token mix, and peak hours using current 2026 rates and a reusable budgeting formula." property="og:description"><meta content="https://benderandrew069.github.io/deepseek-api-pricing-2026/" property="og:url"><meta content="https://benderandrew069.github.io/deepseek-api-pricing-2026/assets/deepseek-api-pricing-cover.png" property="og:image"><meta content="1672" property="og:image:width"><meta content="941" property="og:image:height"><meta content="DeepSeek API pricing inputs: model, cache status, and processing window" property="og:image:alt"><meta content="Moduck" property="og:site_name"><meta content="2026-10-27" property="article:published_time"><meta content="2026-10-27" property="article:modified_time"><meta content="summary_large_image" name="twitter:card"><meta content="DeepSeek API Pricing 2026 & Cost Calculator | Moduck" name="twitter:title"><meta content="Calculate DeepSeek API costs by model, cache-hit rate, token mix, and peak hours using current 2026 rates and a reusable budgeting formula." name="twitter:description"><meta content="https://benderandrew069.github.io/deepseek-api-pricing-2026/assets/deepseek-api-pricing-cover.png" name="twitter:image"><meta content="DeepSeek API pricing inputs: model, cache status, and processing window" name="twitter:image:alt"><script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"DeepSeek API Pricing 2026: Calculate Cost by Model, Cache Hits, and Peak Hours","description":"Calculate DeepSeek API costs by model, cache-hit rate, token mix, and peak hours using current 2026 rates and a reusable budgeting formula.","image":["https://benderandrew069.github.io/deepseek-api-pricing-2026/assets/deepseek-api-pricing-cover.png"],"datePublished":"2026-10-27","dateModified":"2026-10-27","mainEntityOfPage":{"@type":"WebPage","@id":"https://benderandrew069.github.io/deepseek-api-pricing-2026/"},"author":{"@type":"Organization","name":"Moduck","url":"https://moduck.ai/"},"publisher":{"@type":"Organization","name":"Moduck","url":"https://moduck.ai/"},"inLanguage":"en","about":["DeepSeek API pricing","API cost estimation","prompt caching","peak and off-peak pricing"]}</script></head><body><main><article><h1>DeepSeek API Pricing 2026: Calculate Cost by Model, Cache Hits, and Peak Hours</h1>
+<p><picture><source media="(max-width:600px)" srcset="assets/deepseek-api-pricing-cover-narrow.png"><img alt="Editorial illustration showing DeepSeek API cost inputs: Flash or V4 Pro, cache-hit or cache-miss tokens, and peak or off-peak processing time" src="assets/deepseek-api-pricing-cover.png"></picture></p>
+<p><em>Generated conceptual illustration of the pricing inputs discussed below; it is not a DeepSeek or Moduck product interface.</em></p>
+<p>A useful DeepSeek API pricing estimate has three lines: cache-hit input, cache-miss input, and output. Each line has a peak and off-peak price. Choose the current model, count each token category separately, then apply the price for the window in which those tokens were processed.</p>
+<p>The table below reflects <a href="https://api-docs.deepseek.com/quick_start/pricing/">DeepSeek&rsquo;s Models & Pricing page</a> as checked on October 27, 2026. DeepSeek identifies <code>deepseek-flash</code> as DeepSeek-V4.1-Flash-1017 and <code>deepseek-v4-pro</code> as DeepSeek-V4-Pro-0813. Prices can change, so recheck the source before approving a budget.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Price per 1M tokens (USD)</th>
+<th style="text-align: right;">Flash off-peak</th>
+<th style="text-align: right;">Flash peak</th>
+<th style="text-align: right;">V4 Pro off-peak</th>
+<th style="text-align: right;">V4 Pro peak</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cache-hit input</td>
+<td style="text-align: right;">$0.003</td>
+<td style="text-align: right;">$0.006</td>
+<td style="text-align: right;">$0.022</td>
+<td style="text-align: right;">$0.044</td>
+</tr>
+<tr>
+<td>Cache-miss input</td>
+<td style="text-align: right;">$0.15</td>
+<td style="text-align: right;">$0.30</td>
+<td style="text-align: right;">$0.66</td>
+<td style="text-align: right;">$1.32</td>
+</tr>
+<tr>
+<td>Output</td>
+<td style="text-align: right;">$0.60</td>
+<td style="text-align: right;">$1.20</td>
+<td style="text-align: right;">$1.98</td>
+<td style="text-align: right;">$3.96</td>
+</tr>
+</tbody>
+</table></div>
+<p>Peak hours are 01:00&ndash;04:00 and 06:00&ndash;10:00 UTC, Monday through Friday, excluding Chinese public holidays. All other hours are off-peak, including weekends and Chinese public holidays. The listed peak rates are twice the off-peak rates. A single blended input price is therefore useful only after you know both the cache mix and the time mix.</p>
+<p>Add Search and Fetch as separate request charges if your application uses them. DeepSeek lists each standalone API at $0.75 per 1,000 successful requests.</p>
+<p>This article uses documented rates and hypothetical arithmetic. No DeepSeek account, model request, payment, or bill was tested for this research.</p>
+<h2>Use one formula, then split it by time window</h2>
+<p>Start with three monthly token totals for one model:</p>
+<ul>
+<li><strong>H</strong> = input tokens billed as cache hits</li>
+<li><strong>M</strong> = input tokens billed as cache misses</li>
+<li><strong>O</strong> = output tokens</li>
+</ul>
+<p>For any one time window, the formula is:</p>
+<blockquote>
+<p><strong>Cost = (H &divide; 1,000,000 &times; cache-hit price) + (M &divide; 1,000,000 &times; cache-miss price) + (O &divide; 1,000,000 &times; output price)</strong></p>
+</blockquote>
+<p>If some traffic runs at peak and some off-peak, split H, M, and O into peak and off-peak totals and run the formula twice. Then add the two subtotals. This is the safest method because your peak share may differ by category: a nightly batch could contain most of your input while interactive daytime traffic produces most of your output.</p>
+<p>There is a shortcut when the same peak share applies to all three categories. Every current peak price in the table is exactly twice its off-peak counterpart. Multiply the off-peak subtotal by <code>1 + p</code>, where <strong>p</strong> is the share of tokens processed at peak. A 35% peak share means a multiplier of 1.35. Do not use that shortcut if the categories have different schedules.</p>
+<p>Treat cache hit rate as a share of <strong>input tokens</strong>, not a share of requests. Suppose 90 small requests hit the cache but 10 very large requests miss. A &ldquo;90% of requests hit&rdquo; label could still conceal most input tokens being billed at the miss rate. Weighting by tokens keeps the estimate aligned with billing.</p>
+<p>For planning, H and M may begin as assumptions. Once requests are running, replace them with the response usage fields described later. DeepSeek&rsquo;s <a href="https://api-docs.deepseek.com/quick_start/token_usage/">token-usage documentation</a> says actual processed token counts in usage results are the source of truth; rough word or character conversions are only estimates.</p>
+<h2>Worked example: one workload, two models, three schedules</h2>
+<p>Consider a hypothetical application with:</p>
+<ul>
+<li>1,000,000 calls per month</li>
+<li>2,000 input tokens per call</li>
+<li>500 output tokens per call</li>
+<li>60% of input tokens billed as cache hits</li>
+<li>35% of every token category processed during peak windows</li>
+</ul>
+<p>That produces 2 billion input tokens and 500 million output tokens. Applying the assumed cache mix gives 1.2 billion cache-hit input tokens and 800 million cache-miss input tokens.</p>
+<p>For Flash at off-peak rates, the monthly subtotal is:</p>
+<blockquote>
+<p><code>(1,200 &times; $0.003) + (800 &times; $0.15) + (500 &times; $0.60) = $423.60</code></p>
+</blockquote>
+<p>The numbers are in millions of tokens, which is why 1.2 billion becomes 1,200 rate units. With 35% of each category at peak, the shortcut multiplier is 1.35, producing <code>$423.60 &times; 1.35 = $571.86</code>.</p>
+<p>The same workload at V4 Pro&rsquo;s off-peak rates is:</p>
+<blockquote>
+<p><code>(1,200 &times; $0.022) + (800 &times; $0.66) + (500 &times; $1.98) = $1,544.40</code></p>
+</blockquote>
+<p>Applying the same time mix gives <code>$1,544.40 &times; 1.35 = $2,084.94</code>.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align: right;">Off-peak only</th>
+<th style="text-align: right;">Peak only</th>
+<th style="text-align: right;">35% of tokens at peak</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>deepseek-flash</code></td>
+<td style="text-align: right;">$423.60</td>
+<td style="text-align: right;">$847.20</td>
+<td style="text-align: right;">$571.86</td>
+</tr>
+<tr>
+<td><code>deepseek-v4-pro</code></td>
+<td style="text-align: right;">$1,544.40</td>
+<td style="text-align: right;">$3,088.80</td>
+<td style="text-align: right;">$2,084.94</td>
+</tr>
+</tbody>
+</table></div>
+<p>These totals answer only the cost question. Choosing Flash because this table is lower would require a separate finding that Flash meets your task, feature, output-quality, and operational requirements. No comparable performance or latency test was run here.</p>
+<p>Notice one less obvious result: in the Flash off-peak calculation, output costs $300, while all input costs $123.60. A high cache-hit share makes input inexpensive, but it does not discount output. For this workload, controlling output length can matter more than pushing the cache-hit share a little higher.</p>
+<h2>Test the assumptions that can move the total</h2>
+<p>A base estimate becomes more useful when you deliberately try to break it. The table below keeps the Flash workload from the previous section and changes one assumption at a time.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Flash scenario</th>
+<th>Changed assumption</th>
+<th style="text-align: right;">Estimated monthly cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base</td>
+<td>60% input-token cache hit, 500 output tokens/call, 35% peak</td>
+<td style="text-align: right;">$571.86</td>
+</tr>
+<tr>
+<td>No cache hits</td>
+<td>0% input-token cache hit</td>
+<td style="text-align: right;">$810.00</td>
+</tr>
+<tr>
+<td>High cache reuse</td>
+<td>90% input-token cache hit</td>
+<td style="text-align: right;">$452.79</td>
+</tr>
+<tr>
+<td>Shorter output</td>
+<td>250 output tokens/call</td>
+<td style="text-align: right;">$369.36</td>
+</tr>
+<tr>
+<td>Longer output</td>
+<td>1,000 output tokens/call</td>
+<td style="text-align: right;">$976.86</td>
+</tr>
+<tr>
+<td>Off-peak only</td>
+<td>0% peak</td>
+<td style="text-align: right;">$423.60</td>
+</tr>
+<tr>
+<td>Peak only</td>
+<td>100% peak</td>
+<td style="text-align: right;">$847.20</td>
+</tr>
+</tbody>
+</table></div>
+<p>These are calculated scenarios, not observed spend. Their value is in showing which input deserves measurement.</p>
+<p>In this example, moving from no cache hits to 90% cache-hit input changes the estimate by $357.21. Doubling output from 500 to 1,000 tokens per call adds $405.00 relative to the base. The longer-output case therefore costs more than the no-cache case, even though 60% of input still receives the cheap cache-hit rate. The cheapest input line does not cap the total bill.</p>
+<p>Peak exposure has a clean effect under the current rate card because all peak rates are double: an all-peak workload costs exactly twice its all-off-peak counterpart. Real traffic is rarely so uniform, so measure peak shares for hit input, miss input, and output separately when possible.</p>
+<p>Use at least three budget cases:</p>
+<ul>
+<li><strong>Low:</strong> shorter output, stronger measured prefix reuse, and only genuinely deferrable work off-peak.</li>
+<li><strong>Base:</strong> calls and token volumes supported by current product assumptions or a representative pilot.</li>
+<li><strong>High:</strong> longer output, weaker cache reuse, and more peak traffic than planned.</li>
+</ul>
+<p>The conclusion should change if the high case exceeds the budget, if the lower-priced model fails the task, or if an operational requirement prevents moving work. Those are reasons to redesign the workload or test another model. Hiding the uncertainty inside one blended rate will not resolve it.</p>
+<h2>Measure cache-hit tokens instead of guessing</h2>
+<p>DeepSeek enables caching by default; there is no billing flag to activate it. Its <a href="https://api-docs.deepseek.com/guides/kv_cache/">context-caching guide</a> says a later request gets a hit only when it fully matches a prefix unit that has already been persisted.</p>
+<p>That makes prompt structure relevant. A stable system prompt and repeated document prefix can become reusable after a matching prefix unit has been persisted. Inserting changing content near the beginning can reduce reusable prefix length. The guide also describes caching as best-effort, not a guaranteed 100% hit mechanism. Cache construction takes time, and unused cache is generally cleared within hours to days. A planning spreadsheet should not turn a tidy prompt layout into a guaranteed hit rate.</p>
+<p>The API response provides the two billing inputs you need:</p>
+<ul>
+<li><code>prompt_cache_hit_tokens</code></li>
+<li><code>prompt_cache_miss_tokens</code></li>
+</ul>
+<p>Measure those token counts instead of labeling entire requests &ldquo;hit&rdquo; or &ldquo;miss.&rdquo; A request can contain both categories, and different request sizes make a request-level percentage misleading. Token-level totals let finance reconcile the estimate to the same units the rate card uses.</p>
+<p>A simple measurement loop is enough:</p>
+<ol>
+<li>Record model, request time in UTC, <code>prompt_cache_hit_tokens</code>, <code>prompt_cache_miss_tokens</code>, and output tokens for each response.</li>
+<li>Aggregate those values by model and peak/off-peak window across every traffic pattern included in the budget.</li>
+<li>Recalculate the bill with the current official rate table.</li>
+<li>Compare actual category shares with the low, base, and high cases.</li>
+<li>Investigate changes in prefix layout or traffic mix before attributing a cost change to the rate card.</li>
+</ol>
+<p>Caching only changes how matching input is retrieved and billed. It does not turn output into cached input, and it does not make generated output deterministic. Keep output tokens as their own line in every forecast.</p>
+<h2>Use off-peak pricing only for work you can actually defer</h2>
+<p>The current peak windows are 01:00&ndash;04:00 and 06:00&ndash;10:00 UTC on Monday through Friday, except Chinese public holidays. Weekends, Chinese public holidays, and all other hours are off-peak. Convert those windows to the scheduler&rsquo;s timezone, but keep UTC in the billing dataset so daylight-saving changes do not silently shift your classification.</p>
+<p>Potential candidates for deliberate off-peak scheduling include offline evaluation, backlog summarization, document indexing, and reports with a flexible completion time. Their deadlines and capacity needs still require testing. Interactive chat, user-triggered agents, and latency-sensitive product flows are different: delaying a response solely to obtain a token discount may damage the product decision that the API is meant to support.</p>
+<p>For mixed traffic, calculate the peak share from token volume, not job count. A few long batch jobs can carry more tokens than thousands of short interactive calls. If hit input, miss input, and output follow different schedules, split each category rather than applying one overall percentage.</p>
+<p>Capacity requires a separate check. DeepSeek&rsquo;s <a href="https://api-docs.deepseek.com/quick_start/rate_limit/">Rate Limit & Isolation page</a> lists account-level concurrency limits of 2,500 for <code>deepseek-flash</code> and 500 for <code>deepseek-v4-pro</code> as of the research date. A compressed off-peak batch still needs to prove it can complete within your deadline. Queue shape, request duration, retry behavior, and the current account limit still need an operational test.</p>
+<p>The practical rule is narrow: move work only when it is genuinely deferrable, then verify that the denser schedule still meets the workload&rsquo;s completion and reliability requirements.</p>
+<h2>Direct DeepSeek or an API aggregator? Verify the billing path</h2>
+<p>The formula in this article describes DeepSeek&rsquo;s documented direct API rates. Do not assume it transfers unchanged to a gateway. An aggregator may expose a different model identifier, price, cache treatment, routing policy, usage record, or billing unit.</p>
+<p><picture><source media="(max-width:600px)" srcset="assets/verify-billing-path-narrow.png"><img alt="Billing-path diagram showing a workload split between DeepSeek direct pricing and an API aggregator that requires separate checks for model, price, cache, routing, and usage" src="assets/verify-billing-path.png"></picture></p>
+<p><em>DeepSeek&rsquo;s direct rate card applies to the direct path. An aggregator budget requires separate verification of the exact model, price, cache treatment, routing policy, and usage records.</em></p>
+<p>Moduck publishes this article and is an AI API Aggregator and Unified AI API Platform for developers and product teams. That relationship makes the distinction important: this article does not establish that a particular DeepSeek model is currently available through Moduck or that DeepSeek&rsquo;s direct cache and peak discounts pass through unchanged.</p>
+<p>Choose the path by verifying the terms that affect your workload:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Why it changes the decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Is the exact model and version available?</td>
+<td>A similar display name is not proof of the same model or billing column.</td>
+</tr>
+<tr>
+<td>What are the input, output, and cache units?</td>
+<td>The direct formula works only when the categories map cleanly.</td>
+</tr>
+<tr>
+<td>Are peak/off-peak rates passed through?</td>
+<td>A flat gateway price can remove both the discount and the scheduling incentive.</td>
+</tr>
+<tr>
+<td>Can you export usage by model and token category?</td>
+<td>Without comparable usage, budget reconciliation becomes harder.</td>
+</tr>
+<tr>
+<td>Does routing change the provider or model?</td>
+<td>Routing can improve operational flexibility while making provider-specific cost assumptions invalid.</td>
+</tr>
+<tr>
+<td>What account, support, and concurrency terms apply?</td>
+<td>Operational consolidation and the lowest direct rate are different decisions.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Direct DeepSeek is the cleaner choice when you need its exact price mechanics, model surface, and usage fields and are willing to operate that provider integration. An aggregation layer may fit when consolidating integrations or model discovery matters more. Confirm its current model, price, cache, routing, and account terms first; otherwise the direct-API estimate cannot serve as the gateway budget.</p>
+<p>If an aggregation layer fits those operational needs, inspect Moduck&rsquo;s current documentation before you commit. <a href="https://docs.moduck.ai/">Read the documentation</a>.</p>
+<p>Verify the exact model, price, and account conditions for your workload.</p>
+<p>Treat the documentation link as a research step, not as confirmation of DeepSeek availability, matching rates, or account eligibility.</p>
+<h2>Build a range now; replace assumptions with usage next</h2>
+<p>Before approving a DeepSeek API budget, make the worksheet auditable. Record the model and version, cache-hit input tokens, cache-miss input tokens, output tokens, the peak/off-peak split for each category, and any standalone Search or Fetch requests. Keep the USD rate, rate unit, source URL, and check date beside the calculation so a future price change is easy to isolate.</p>
+<p>Then produce three numbers, not one:</p>
+<ol>
+<li>a low case with only supportable cache and scheduling assumptions;</li>
+<li>a base case tied to the product&rsquo;s expected token mix;</li>
+<li>a high case that covers longer output, weaker reuse, or more peak traffic.</li>
+</ol>
+<p>After integration, replace estimates with <code>prompt_cache_hit_tokens</code>, <code>prompt_cache_miss_tokens</code>, output usage, the actual model, and UTC request time. Reforecast from those fields before concluding that the model, cache layout, or rate card caused a variance.</p>
+<p>Cost alone cannot select the model. Task quality, required features, latency, concurrency, and the billing path can reverse the cheapest-looking answer. The defensible decision is the model and access path that meet those requirements inside the measured cost range.</p></article></main></body></html>

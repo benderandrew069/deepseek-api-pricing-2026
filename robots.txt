@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://benderandrew069.github.io/deepseek-api-pricing-2026/sitemap.xml
