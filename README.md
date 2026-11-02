@@ -1,180 +1,139 @@
-# DeepSeek API Pricing 2026: Calculate Cost by Model, Cache Hits, and Peak Hours
+# DeepSeek API Pricing: Compare Providers and Estimate Your Costs
 
-![Editorial illustration showing DeepSeek API cost inputs: Flash or V4 Pro, cache-hit or cache-miss tokens, and peak or off-peak processing time](assets/deepseek-api-pricing-cover.png)
+DeepSeek API pricing starts at $0.15 per million uncached input tokens and $0.60 per million output tokens for the official Flash API off-peak. Other providers set their own rates, so the cost of using DeepSeek also depends on where you access it and which configuration you choose.
 
-*Generated conceptual illustration of the pricing inputs discussed below; it is not a DeepSeek or Moduck product interface.*
+Start with the question you need to answer:
 
-A useful DeepSeek API pricing estimate has three lines: cache-hit input, cache-miss input, and output. Each line has a peak and off-peak price. Choose the current model, count each token category separately, then apply the price for the window in which those tokens were processed.
+- **Checking the official price?** The table below separates input, cached input and output, including peak rates.
+- **Choosing a provider?** Compare DeepSeek direct, Morph, UnificAlly and Moduck using their published model prices.
+- **Planning a monthly budget?** Use the formula and two worked examples to price your own token mix.
 
-The table below reflects [DeepSeek’s Models & Pricing page](https://api-docs.deepseek.com/quick_start/pricing/) as checked on October 27, 2026. DeepSeek identifies `deepseek-flash` as DeepSeek-V4.1-Flash-1017 and `deepseek-v4-pro` as DeepSeek-V4-Pro-0813. Prices can change, so recheck the source before approving a budget.
+**Prices checked November 2, 2026.** This guide is prepared by Moduck, an AI API aggregator for developers and product teams.
 
-| Price per 1M tokens (USD) | Flash off-peak | Flash peak | V4 Pro off-peak | V4 Pro peak |
-|---|---:|---:|---:|---:|
-| Cache-hit input | $0.003 | $0.006 | $0.022 | $0.044 |
-| Cache-miss input | $0.15 | $0.30 | $0.66 | $1.32 |
-| Output | $0.60 | $1.20 | $1.98 | $3.96 |
+These are **DeepSeek’s direct API prices in USD per 1 million tokens**, from [DeepSeek’s official rate card](https://api-docs.deepseek.com/quick_start/pricing/):
 
-Peak hours are 01:00–04:00 and 06:00–10:00 UTC, Monday through Friday, excluding Chinese public holidays. All other hours are off-peak, including weekends and Chinese public holidays. The listed peak rates are twice the off-peak rates. A single blended input price is therefore useful only after you know both the cache mix and the time mix.
+| Official API model | Input, cache miss: off-peak / peak | Input, cache hit: off-peak / peak | Output: off-peak / peak |
+| --- | --- | --- | --- |
+| `deepseek-flash` — V4.1-Flash-1017 | $0.15 / $0.30 | $0.003 / $0.006 | $0.60 / $1.20 |
+| `deepseek-v4-pro` — V4-Pro-0813 | $0.66 / $1.32 | $0.022 / $0.044 | $1.98 / $3.96 |
 
-Add Search and Fetch as separate request charges if your application uses them. DeepSeek lists each standalone API at $0.75 per 1,000 successful requests.
+Peak pricing applies **01:00–04:00 and 06:00–10:00 UTC, Monday through Friday, excluding Chinese public holidays**. Every other hour is off-peak, including weekends and those holidays.
 
-This article uses documented rates and hypothetical arithmetic. No DeepSeek account, model request, payment, or bill was tested for this research.
+The current model behind `deepseek-flash` is DeepSeek-V4.1-Flash-1017. DeepSeek says the older `deepseek-v4-flash` and `deepseek-v4-flash-vision-exp` names are still accepted, but now reach that model at Flash prices. Use the current served version when comparing a rate card with an older article.
+![Conceptual quote cards for model, cache and timing leading to a budget calculation.](assets/deepseek-api-pricing-cover-20261102.png)
 
-## Use one formula, then split it by time window
+*Conceptual illustration: the conditions behind a token quote belong in the budget.*
 
-Start with three monthly token totals for one model:
+## What DeepSeek API providers charge
 
-- **H** = input tokens billed as cache hits
-- **M** = input tokens billed as cache misses
-- **O** = output tokens
+A provider’s input price answers only part of the buying question. Cached input and generated output have their own rates, and a time-based surcharge can change which option makes sense for your application.
 
-For any one time window, the formula is:
+Here are the providers’ published Flash prices, checked November 2, 2026. **All prices are USD per 1M tokens; input means cache-miss input.**
 
-> **Cost = (H ÷ 1,000,000 × cache-hit price) + (M ÷ 1,000,000 × cache-miss price) + (O ÷ 1,000,000 × output price)**
+| Provider | Model / configuration | Rate period | Input | Cached input | Output |
+| --- | --- | --- | ---: | ---: | ---: |
+| [DeepSeek](https://api-docs.deepseek.com/quick_start/pricing/) | Flash 1017 | Off-peak | $0.15 | $0.003 | $0.60 |
+| [DeepSeek](https://api-docs.deepseek.com/quick_start/pricing/) | Flash 1017 | Peak | $0.30 | $0.006 | $1.20 |
+| [Morph](https://www.morphllm.com/pricing) | Flash 1017 | All hours | $0.12 | $0.008 | $0.80 |
+| [UnificAlly](https://unifically.com/zh/blogs/deepseek-api) | Flash | Off-peak | $0.1125 | $0.00225 | $0.45 |
+| [UnificAlly](https://unifically.com/zh/blogs/deepseek-api) | Flash | Peak | $0.225 | $0.0045 | $0.90 |
+| [Moduck](https://moduck.ai/models/c/deepseek/deepseek-v4.1-flash) | Flash · FP4 | Published rate | $0.03776 | $0.00128 | $0.096 |
 
-If some traffic runs at peak and some off-peak, split H, M, and O into peak and off-peak totals and run the formula twice. Then add the two subtotals. This is the safest method because your peak share may differ by category: a nightly batch could contain most of your input while interactive daytime traffic produces most of your output.
+Model IDs: DeepSeek `deepseek-flash`; Morph `morph-dsv41flash-1017`; UnificAlly `deepseek/deepseek-flash`; Moduck `deepseek/deepseek-v4.1-flash`.
 
-There is a shortcut when the same peak share applies to all three categories. Every current peak price in the table is exactly twice its off-peak counterpart. Multiply the off-peak subtotal by `1 + p`, where **p** is the share of tokens processed at peak. A 35% peak share means a multiplier of 1.35. Do not use that shortcut if the categories have different schedules.
+DeepSeek’s peak schedule is defined above. UnificAlly publishes peak/off-peak prices; Moduck’s model page gives the FP4 rates above without a separate time-band table.
 
-Treat cache hit rate as a share of **input tokens**, not a share of requests. Suppose 90 small requests hit the cache but 10 very large requests miss. A “90% of requests hit” label could still conceal most input tokens being billed at the miss rate. Weighting by tokens keeps the estimate aligned with billing.
+Morph shows why a single headline rate can mislead. Its uncached input costs less than DeepSeek direct off-peak, while its cached input and output cost more. An application that reads large amounts of new text has a different comparison from one that generates long answers.
 
-For planning, H and M may begin as assumptions. Once requests are running, replace them with the response usage fields described later. DeepSeek’s [token-usage documentation](https://api-docs.deepseek.com/quick_start/token_usage/) says actual processed token counts in usage results are the source of truth; rough word or character conversions are only estimates.
+Moduck’s Flash prices are for **FP4**, a model precision/quantization configuration. Keep that specification beside the price when you build a shortlist. Compare the cost of the configuration you plan to use, then judge its answers against your application’s requirements. The budget table compares token costs; it does not claim every host and configuration produces identical results.
 
-## Worked example: one workload, two models, three schedules
+## Turn token rates into your own monthly estimate
 
-Consider a hypothetical application with:
+Start with monthly billable token totals, not the number of people using your app. Ten short extraction calls can cost less than one long agent run, even when both end in a one-paragraph answer.
 
-- 1,000,000 calls per month
-- 2,000 input tokens per call
-- 500 output tokens per call
-- 60% of input tokens billed as cache hits
-- 35% of every token category processed during peak windows
+For each provider and each applicable billing period:
 
-That produces 2 billion input tokens and 500 million output tokens. Applying the assumed cache mix gives 1.2 billion cache-hit input tokens and 800 million cache-miss input tokens.
+**Token cost = (cache-miss input ÷ 1,000,000 × miss rate) + (cache-hit input ÷ 1,000,000 × hit rate) + (billable output ÷ 1,000,000 × output rate).**
 
-For Flash at off-peak rates, the monthly subtotal is:
+Add the periods together, then add separately billed tools and other applicable fees. If you start from requests, monthly input is requests × average input tokens, and monthly output is requests × average billable output tokens. Split input into hit and miss totals using measured usage. For thinking workloads, use the service’s billable output total, not just the visible final answer.
 
-> `(1,200 × $0.003) + (800 × $0.15) + (500 × $0.60) = $423.60`
+For DeepSeek direct, the response fields `prompt_cache_hit_tokens` and `prompt_cache_miss_tokens` distinguish the two input categories. [DeepSeek’s caching guide](https://api-docs.deepseek.com/guides/kv_cache) describes matching persisted prompt prefixes and best-effort cache behavior. Reusing a document is not a promise that every token will hit the cache. A cache discount affects qualifying input; it does not discount newly generated output. In the assistant example below, losing all assumed hits would raise direct off-peak cost from $24.36 to $42.00 at the same total input and output volumes.
 
-The numbers are in millions of tokens, which is why 1.2 billion becomes 1,200 rate units. With 35% of each category at peak, the shortcut multiplier is 1.35, producing `$423.60 × 1.35 = $571.86`.
+If your logs do not yet separate peak usage, calculate an all-off-peak and an all-peak budget as bounds for the same token volumes. For a more specific estimate, split actual tokens into the correct time bins. The official price page does not settle every long-request boundary case; confirm how a request crossing a boundary is assigned before relying on a last-minute scheduling trick.
 
-The same workload at V4 Pro’s off-peak rates is:
+There is another line item for research agents. DeepSeek lists Search and Fetch at **$0.75 per 1,000 successful billable requests each**. Thus 10,000 billable searches plus 20,000 billable fetches add $7.50 + $15.00 = **$22.50**, separately from model tokens. The [Search & Fetch billing rules](https://api-docs.deepseek.com/guides/search) exclude failed requests and define a billable success. The page still says certain server-side calls are “currently free” while also stating billing starts November 1, 2026, Beijing time—a date already past at this check. Budget using the stated charging schedule and verify account treatment rather than assuming those calls remain free.
 
-> `(1,200 × $0.022) + (800 × $0.66) + (500 × $1.98) = $1,544.40`
+These estimates exclude taxes, payment or currency-conversion charges, any separate gateway fees, and extra retry/fallback usage. Hosted API token fees also remain separate from any chat-app offer or promotional credit. Do not assume a free balance applies to your account.
+![Cached and fresh input enter a model; generated output remains a separate billed category.](assets/deepseek-cache-output-20261102.png)
 
-Applying the same time mix gives `$1,544.40 × 1.35 = $2,084.94`.
+*Conceptual billing view. Cache pricing applies to qualifying input; generated output uses its own rate.*
 
-| Model | Off-peak only | Peak only | 35% of tokens at peak |
-|---|---:|---:|---:|
-| `deepseek-flash` | $423.60 | $847.20 | $571.86 |
-| `deepseek-v4-pro` | $1,544.40 | $3,088.80 | $2,084.94 |
+## The cheaper route changes with the workload
 
-These totals answer only the cost question. Choosing Flash because this table is lower would require a separate finding that Flash meets your task, feature, output-quality, and operational requirements. No comparable performance or latency test was run here.
+Consider two applications over a 30-day month. These are planning examples using published prices, not customer bills or performance benchmarks. Each provider is assigned the **same token volumes and cache share** to isolate the rate differences. Actual cache hits depend on the workload and host.
 
-Notice one less obvious result: in the Flash off-peak calculation, output costs $300, while all input costs $123.60. A high cache-hit share makes input inexpensive, but it does not discount output. For this workload, controlling output length can matter more than pushing the cache-hit share a little higher.
+| Assumption | Input-heavy assistant | Output-heavy generator |
+| --- | --- | --- |
+| Requests per month | 100,000 | 50,000 |
+| Average input tokens per request | 2,000 | 1,000 |
+| Average billable output tokens per request | 200 | 2,000 |
+| Total input / output | 200M / 20M | 50M / 100M |
+| Cache-hit share of input | 60% | 10% |
+| Share of billable tokens assigned to peak rates | 25% of each input/output category | 25% of each input/output category |
 
-## Test the assumptions that can move the total
+The assistant has 120M cached input, 80M uncached input and 20M output tokens. On DeepSeek direct, all-off-peak token cost is:
 
-A base estimate becomes more useful when you deliberately try to break it. The table below keeps the Flash workload from the previous section and changes one assumption at a time.
+**120 × $0.003 + 80 × $0.15 + 20 × $0.60 = $24.36.**
 
-| Flash scenario | Changed assumption | Estimated monthly cost |
-|---|---|---:|
-| Base | 60% input-token cache hit, 500 output tokens/call, 35% peak | $571.86 |
-| No cache hits | 0% input-token cache hit | $810.00 |
-| High cache reuse | 90% input-token cache hit | $452.79 |
-| Shorter output | 250 output tokens/call | $369.36 |
-| Longer output | 1,000 output tokens/call | $976.86 |
-| Off-peak only | 0% peak | $423.60 |
-| Peak only | 100% peak | $847.20 |
+With 25% of each category charged at double rates, the mixed-period estimate is **$24.36 × (0.75 + 0.25 × 2) = $30.45**. At 100% peak, the same tokens cost **$48.72**. Nothing about the model, token volume or cache ratio changed in that timing comparison.
 
-These are calculated scenarios, not observed spend. Their value is in showing which input deserves measurement.
+Here are the monthly token costs using each provider’s published rates, rounded to the nearest cent after calculating the full total:
 
-In this example, moving from no cache hits to 90% cache-hit input changes the estimate by $357.21. Doubling output from 500 to 1,000 tokens per call adds $405.00 relative to the base. The longer-output case therefore costs more than the no-cache case, even though 60% of input still receives the cheap cache-hit rate. The cheapest input line does not cap the total bill.
+| Provider-rate calculation | Input-heavy assistant | Output-heavy generator |
+| --- | ---: | ---: |
+| DeepSeek direct, all off-peak | $24.36 | $66.77 |
+| DeepSeek direct, 25% peak | $30.45 | $83.46 |
+| DeepSeek direct, all peak | $48.72 | $133.53 |
+| Morph, listed all-hours rates | $26.56 | $85.44 |
+| UnificAlly, published rates with 25% peak | $22.84 | $62.59 |
+| Moduck FP4, published model rates | $5.09 | $11.31 |
 
-Peak exposure has a clean effect under the current rate card because all peak rates are double: an all-peak workload costs exactly twice its all-off-peak counterpart. Real traffic is rarely so uniform, so measure peak shares for hit input, miss input, and output separately when possible.
+For the assistant, Morph’s calculation is **80 × $0.12 + 120 × $0.008 + 20 × $0.80 = $26.56**. It falls below the mixed-period direct estimate, but above direct all-off-peak. A nightly assistant job can wait for the lower rate; a customer waiting for an answer usually cannot. Those two applications should not inherit the same buying decision.
 
-Use at least three budget cases:
+Now look at the generator. Direct all-off-peak cost is **45 × $0.15 + 5 × $0.003 + 100 × $0.60 = $66.765**. At 25% peak that becomes **$83.45625**, while Morph totals **45 × $0.12 + 5 × $0.008 + 100 × $0.80 = $85.44**. The output-heavy mix has reversed that particular mixed-period comparison. For UnificAlly, the generator calculation is **(45 × $0.1125 + 5 × $0.00225 + 100 × $0.45) × 1.25 = $62.5921875**.
 
-- **Low:** shorter output, stronger measured prefix reuse, and only genuinely deferrable work off-peak.
-- **Base:** calls and token volumes supported by current product assumptions or a representative pilot.
-- **High:** longer output, weaker cache reuse, and more peak traffic than planned.
+The Moduck row uses its published FP4 rates. The model page does not list separate peak and off-peak prices, so no time adjustment has been added. The next section shows both Moduck calculations and what they mean for these applications.
 
-The conclusion should change if the high case exceeds the budget, if the lower-priced model fails the task, or if an operational requirement prevents moving work. Those are reasons to redesign the workload or test another model. Hiding the uncertainty inside one blended rate will not resolve it.
+## DeepSeek pricing on Moduck
 
-## Measure cache-hit tokens instead of guessing
+Moduck is an AI API aggregator for developers and product teams. Its model page brings the DeepSeek configuration, token prices, specifications and quick-start information together, giving you a practical path from comparing costs to planning an integration.
 
-DeepSeek enables caching by default; there is no billing flag to activate it. Its [context-caching guide](https://api-docs.deepseek.com/guides/kv_cache/) says a later request gets a hit only when it fully matches a prefix unit that has already been persisted.
+For `deepseek/deepseek-v4.1-flash` in FP4, **Moduck’s prices are $0.03776 per 1M input tokens, $0.00128 per 1M cached input tokens and $0.096 per 1M output tokens**. The model information also lists a 1M-token context window and a maximum output of 384K tokens. The context and output limits are capacity ceilings. Costs depend on the tokens actually processed.
 
-That makes prompt structure relevant. A stable system prompt and repeated document prefix can become reusable after a matching prefix unit has been persisted. Inserting changing content near the beginning can reduce reusable prefix length. The guide also describes caching as best-effort, not a guaranteed 100% hit mechanism. Cache construction takes time, and unused cache is generally cleared within hours to days. A planning spreadsheet should not turn a tidy prompt layout into a guaranteed hit rate.
+Apply these prices to the input-heavy assistant: 80M uncached input tokens, 120M cached input tokens and 20M output tokens per month.
 
-The API response provides the two billing inputs you need:
+**80 × $0.03776 + 120 × $0.00128 + 20 × $0.096 = $5.0944, or about $5.09 per month.**
 
-- `prompt_cache_hit_tokens`
-- `prompt_cache_miss_tokens`
+For the output-heavy generator, the assumptions are 45M uncached input tokens, 5M cached input tokens and 100M output tokens:
 
-Measure those token counts instead of labeling entire requests “hit” or “miss.” A request can contain both categories, and different request sizes make a request-level percentage misleading. Token-level totals let finance reconcile the estimate to the same units the rate card uses.
+**45 × $0.03776 + 5 × $0.00128 + 100 × $0.096 = $11.3056, or about $11.31 per month.**
 
-A simple measurement loop is enough:
+The assistant spends about $3.02 on fresh input, $0.15 on cached input and $1.92 on output. That makes repeated context useful, but it also shows why you should count the uncached portion carefully. If the assistant receives mostly new documents, replace the 60% cache assumption with the hit share your workload achieves.
 
-1. Record model, request time in UTC, `prompt_cache_hit_tokens`, `prompt_cache_miss_tokens`, and output tokens for each response.
-2. Aggregate those values by model and peak/off-peak window across every traffic pattern included in the budget.
-3. Recalculate the bill with the current official rate table.
-4. Compare actual category shares with the low, base, and high cases.
-5. Investigate changes in prefix layout or traffic mix before attributing a cost change to the rate card.
+For the generator, output accounts for $9.60 of the $11.31 estimate. Reducing answer length or unnecessary generation attempts can therefore matter more than increasing its relatively small cached-input share. A support assistant and a report generator should have separate budgets even when they use the same model.
 
-Caching only changes how matching input is retrieved and billed. It does not turn output into cached input, and it does not make generated output deterministic. Keep output tokens as their own line in every forecast.
+You can use Moduck’s model information and pricing to assess the configuration, calculate a workload budget, and then use the model page’s OpenAI-style quick-start example and [Moduck’s Flash specification](https://docs.moduck.ai/en/models/library/text-models-llm/deepseek-ai/deepseek-flash) to prepare your integration. Check the model identifier and supported request fields as part of setup, rather than copying an unrelated model’s example.
 
-## Use off-peak pricing only for work you can actually defer
+[Moduck’s public pricing page](https://moduck.ai/pilot/pricing) sets a $10 minimum top-up and no fixed monthly fee. Keep the amount you fund separate from expected token consumption: the assistant’s $5.09 estimate is a usage budget, while the minimum top-up determines the initial funding amount. The examples use standard model rates without applying promotional credit.
 
-The current peak windows are 01:00–04:00 and 06:00–10:00 UTC on Monday through Friday, except Chinese public holidays. Weekends, Chinese public holidays, and all other hours are off-peak. Convert those windows to the scheduler’s timezone, but keep UTC in the billing dataset so daylight-saving changes do not silently shift your classification.
+## Choose a route that fits your workload
 
-Potential candidates for deliberate off-peak scheduling include offline evaluation, backlog summarization, document indexing, and reports with a flexible completion time. Their deadlines and capacity needs still require testing. Interactive chat, user-triggered agents, and latency-sensitive product flows are different: delaying a response solely to obtain a token discount may damage the product decision that the API is meant to support.
+DeepSeek direct is a straightforward baseline when you want its current hosted model and can work with its cache and time-based pricing. Schedulable jobs deserve an off-peak calculation; interactive workloads should use the time distribution their users actually create.
 
-For mixed traffic, calculate the peak share from token volume, not job count. A few long batch jobs can carry more tokens than thousands of short interactive calls. If hit input, miss input, and output follow different schedules, split each category rather than applying one overall percentage.
+Compare other providers using the part of the bill that matters to your application. Morph’s input price may suit some reading-heavy workloads, but its output rate changes the calculation for long answers. UnificAlly has its own peak/off-peak rate card. Moduck’s FP4 rates give the two example workloads token budgets of about $5.09 and $11.31, alongside model information and integration documentation in the same product.
 
-Capacity requires a separate check. DeepSeek’s [Rate Limit & Isolation page](https://api-docs.deepseek.com/quick_start/rate_limit/) lists account-level concurrency limits of 2,500 for `deepseek-flash` and 500 for `deepseek-v4-pro` as of the research date. A compressed off-peak batch still needs to prove it can complete within your deadline. Queue shape, request duration, retry behavior, and the current account limit still need an operational test.
+**Consider Moduck when you want a unified API platform and its DeepSeek FP4 configuration fits the work you are building.** Start with your expected input, output and cache usage, then evaluate whether the model’s answers meet your application’s acceptance criteria. A useful budget should describe the work you need done.
 
-The practical rule is narrow: move work only when it is genuinely deferrable, then verify that the denser schedule still meets the workload’s completion and reliability requirements.
+To start your DeepSeek integration with Moduck, get an API key and follow the documentation for your selected model.
 
-## Direct DeepSeek or an API aggregator? Verify the billing path
-
-The formula in this article describes DeepSeek’s documented direct API rates. Do not assume it transfers unchanged to a gateway. An aggregator may expose a different model identifier, price, cache treatment, routing policy, usage record, or billing unit.
-
-![Billing-path diagram showing a workload split between DeepSeek direct pricing and an API aggregator that requires separate checks for model, price, cache, routing, and usage](assets/verify-billing-path.png)
-
-*DeepSeek’s direct rate card applies to the direct path. An aggregator budget requires separate verification of the exact model, price, cache treatment, routing policy, and usage records.*
-
-Moduck publishes this article and is an AI API Aggregator and Unified AI API Platform for developers and product teams. That relationship makes the distinction important: this article does not establish that a particular DeepSeek model is currently available through Moduck or that DeepSeek’s direct cache and peak discounts pass through unchanged.
-
-Choose the path by verifying the terms that affect your workload:
-
-| Question | Why it changes the decision |
-|---|---|
-| Is the exact model and version available? | A similar display name is not proof of the same model or billing column. |
-| What are the input, output, and cache units? | The direct formula works only when the categories map cleanly. |
-| Are peak/off-peak rates passed through? | A flat gateway price can remove both the discount and the scheduling incentive. |
-| Can you export usage by model and token category? | Without comparable usage, budget reconciliation becomes harder. |
-| Does routing change the provider or model? | Routing can improve operational flexibility while making provider-specific cost assumptions invalid. |
-| What account, support, and concurrency terms apply? | Operational consolidation and the lowest direct rate are different decisions. |
-
-Direct DeepSeek is the cleaner choice when you need its exact price mechanics, model surface, and usage fields and are willing to operate that provider integration. An aggregation layer may fit when consolidating integrations or model discovery matters more. Confirm its current model, price, cache, routing, and account terms first; otherwise the direct-API estimate cannot serve as the gateway budget.
-
-If an aggregation layer fits those operational needs, inspect Moduck’s current documentation before you commit. [Read the documentation](https://docs.moduck.ai/).
-
-Verify the exact model, price, and account conditions for your workload.
-
-Treat the documentation link as a research step, not as confirmation of DeepSeek availability, matching rates, or account eligibility.
-
-## Build a range now; replace assumptions with usage next
-
-Before approving a DeepSeek API budget, make the worksheet auditable. Record the model and version, cache-hit input tokens, cache-miss input tokens, output tokens, the peak/off-peak split for each category, and any standalone Search or Fetch requests. Keep the USD rate, rate unit, source URL, and check date beside the calculation so a future price change is easy to isolate.
-
-Then produce three numbers, not one:
-
-1. a low case with only supportable cache and scheduling assumptions;
-2. a base case tied to the product’s expected token mix;
-3. a high case that covers longer output, weaker reuse, or more peak traffic.
-
-After integration, replace estimates with `prompt_cache_hit_tokens`, `prompt_cache_miss_tokens`, output usage, the actual model, and UTC request time. Reforecast from those fields before concluding that the model, cache layout, or rate card caused a variance.
-
-Cost alone cannot select the model. Task quality, required features, latency, concurrency, and the billing path can reverse the cheapest-looking answer. The defensible decision is the model and access path that meet those requirements inside the measured cost range.
+[Get API Key](https://moduck.ai/dashboard/api-keys) — Sign-in required. Setup details are in the [Moduck documentation](https://docs.moduck.ai/).
