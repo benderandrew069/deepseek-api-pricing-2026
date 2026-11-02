@@ -96,7 +96,7 @@ Here are the monthly token costs using each provider’s published rates, rounde
 | DeepSeek direct, all peak | $48.72 | $133.53 |
 | Morph, listed all-hours rates | $26.56 | $85.44 |
 | UnificAlly, published rates with 25% peak | $22.84 | $62.59 |
-| Moduck FP4, published model rates | $5.09 | $11.31 |
+| Moduck FP4, listed all-hours rates | $5.09 | $11.31 |
 
 For the assistant, Morph’s calculation is **80 × $0.12 + 120 × $0.008 + 20 × $0.80 = $26.56**. It falls below the mixed-period direct estimate, but above direct all-off-peak. A nightly assistant job can wait for the lower rate; a customer waiting for an answer usually cannot. Those two applications should not inherit the same buying decision.
 
