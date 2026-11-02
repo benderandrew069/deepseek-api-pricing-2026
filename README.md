@@ -21,9 +21,9 @@ Peak pricing applies **01:00–04:00 and 06:00–10:00 UTC, Monday through Frida
 
 The current model behind `deepseek-flash` is DeepSeek-V4.1-Flash-1017. DeepSeek says the older `deepseek-v4-flash` and `deepseek-v4-flash-vision-exp` names are still accepted, but now reach that model at Flash prices. Use the current served version when comparing a rate card with an older article.
 
-![Conceptual quote cards for model, cache and timing leading to a budget calculation.](assets/deepseek-api-pricing-cover-20261102.png)
+![DeepSeek API pricing cover showing four provider quote alternatives beside a workload budget worksheet.](assets/deepseek-api-pricing-provider-comparison-20261103.png)
 
-*Conceptual illustration: the conditions behind a token quote belong in the budget.*
+*Compare published rates against the same workload, keeping model configuration, cache usage and billing periods in view.*
 
 ## What DeepSeek API providers charge
 
@@ -68,9 +68,9 @@ These estimates exclude taxes, payment or currency-conversion charges, any separ
 
 Initial funding and monthly consumption are different amounts. [Moduck](https://moduck.ai/pilot/pricing) publishes a $10 minimum top-up and no fixed monthly fee. A token budget below $10 therefore does not mean you can begin with that smaller payment. The examples below use standard rates without promotional credit.
 
-![Cached and fresh input enter a model; generated output remains a separate billed category.](assets/deepseek-cache-output-20261102.png)
+![Two hypothetical workloads: a document assistant reads many pages and returns a short reply; a generator turns a short prompt into a long report.](assets/deepseek-api-pricing-workload-mix-20261103.png)
 
-*Conceptual billing view. Cache pricing applies to qualifying input; generated output uses its own rate.*
+*In these examples, the assistant processes more input while the generator produces more output. Apply each provider’s rates to the same token mix before comparing monthly totals.*
 
 ## The cheaper route changes with the workload
 
