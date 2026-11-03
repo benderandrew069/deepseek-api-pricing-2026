@@ -38,7 +38,7 @@ Here are the providers’ published Flash prices, checked November 2, 2026. **Al
 | [Morph](https://www.morphllm.com/pricing) | Flash 1017 | All hours | $0.12 | $0.008 | $0.80 |
 | [UnificAlly](https://unifically.com/zh/blogs/deepseek-api) | Flash | Off-peak | $0.1125 | $0.00225 | $0.45 |
 | [UnificAlly](https://unifically.com/zh/blogs/deepseek-api) | Flash | Peak | $0.225 | $0.0045 | $0.90 |
-| [Moduck](https://moduck.ai/models/c/deepseek/deepseek-v4.1-flash) | Flash · FP4 | Published rate | $0.03776 | $0.00128 | $0.096 |
+| [Moduck](https://moduck.ai/models/c/deepseek/deepseek-v4.1-flash) | Flash · FP4 | All hours | $0.03776 | $0.00128 | $0.22 |
 
 Model IDs: DeepSeek `deepseek-flash`; Morph `morph-dsv41flash-1017`; UnificAlly `deepseek/deepseek-flash`; Moduck `deepseek/deepseek-v4.1-flash`.
 
@@ -100,7 +100,7 @@ Here are the monthly token costs using each provider’s published rates, rounde
 | DeepSeek direct, all peak | $48.72 | $133.53 |
 | Morph, listed all-hours rates | $26.56 | $85.44 |
 | UnificAlly, published rates with 25% peak | $22.84 | $62.59 |
-| Moduck FP4, published model rates | $5.09 | $11.31 |
+| Moduck FP4, published model rates | $11.42 | $31.32 |
 
 ### An assistant can favor different routes at different hours
 
@@ -112,7 +112,7 @@ For the same assistant workload, Moduck’s published FP4 rates give **80 × $0.
 
 The generator uses 45M uncached input, 5M cached input and 100M output tokens. DeepSeek direct costs **45 × $0.15 + 5 × $0.003 + 100 × $0.60 = $66.765** off-peak, or $83.45625 with the assumed 25% peak share. Morph’s $85.44 now sits above both estimates. Its lower uncached-input price does less for an application that spends most of its budget generating answers.
 
-At Moduck’s FP4 rates, the same token volumes cost **45 × $0.03776 + 5 × $0.00128 + 100 × $0.096 = $11.3056**. Output accounts for $9.60 of that total; it also accounts for $60 of the direct off-peak total. For this workload, controlling answer length and unnecessary regeneration can matter more than improving the small cached-input share.
+At Moduck’s FP4 rates, the same token volumes cost **45 × $0.03776 + 5 × $0.00128 + 100 × $0.22 = $23.72**. Output accounts for $9.60 of that total; it also accounts for $60 of the direct off-peak total. For this workload, controlling answer length and unnecessary regeneration can matter more than improving the small cached-input share.
 
 UnificAlly’s estimates apply its own rate card with the same 25% peak assumption. For example, the generator is **(45 × $0.1125 + 5 × $0.00225 + 100 × $0.45) × 1.25 = $62.5921875**. Moduck’s page lists no separate peak/off-peak prices, so its calculation uses the published rates without a time adjustment.
 
