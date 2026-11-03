@@ -38,7 +38,7 @@ Here are the providers’ published Flash prices, checked November 2, 2026. **Al
 | [Morph](https://www.morphllm.com/pricing) | Flash 1017 | All hours | $0.12 | $0.008 | $0.80 |
 | [UnificAlly](https://unifically.com/zh/blogs/deepseek-api) | Flash | Off-peak | $0.1125 | $0.00225 | $0.45 |
 | [UnificAlly](https://unifically.com/zh/blogs/deepseek-api) | Flash | Peak | $0.225 | $0.0045 | $0.90 |
-| [Moduck](https://moduck.ai/models/c/deepseek/deepseek-v4.1-flash) | Flash · FP4 | All hours | $0.03776 | $0.00128 | $0.22 |
+| [Moduck](https://moduck.ai/models/c/deepseek/deepseek-v4.1-flash) | Flash 1017 | All hours | $0.03776 | $0.00128 | $0.22 |
 
 Model IDs: DeepSeek `deepseek-flash`; Morph `morph-dsv41flash-1017`; UnificAlly `deepseek/deepseek-flash`; Moduck `deepseek/deepseek-v4.1-flash`.
 
