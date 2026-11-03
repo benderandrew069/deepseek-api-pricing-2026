@@ -42,11 +42,11 @@ Here are the providers’ published Flash prices, checked November 2, 2026. **Al
 
 Model IDs: DeepSeek `deepseek-flash`; Morph `morph-dsv41flash-1017`; UnificAlly `deepseek/deepseek-flash`; Moduck `deepseek/deepseek-v4.1-flash`.
 
-DeepSeek’s peak schedule is defined above. UnificAlly publishes peak/off-peak prices; Moduck’s model page gives the FP4 rates above without a separate time-band table.
+DeepSeek’s peak schedule is defined above. UnificAlly publishes peak/off-peak prices; Moduck’s rates for the Flash 1017 entry are shown above without a separate time-band table.
 
 Morph shows why a single headline rate can mislead. Its uncached input costs less than DeepSeek direct off-peak, while its cached input and output cost more. An application that reads large amounts of new text has a different comparison from one that generates long answers.
 
-Moduck’s Flash prices are for **FP4**, a model precision/quantization configuration. Keep that specification beside the price when you build a shortlist. Compare the cost of the configuration you plan to use, then judge its answers against your application’s requirements. The budget table compares token costs; it does not claim every host and configuration produces identical results.
+The Moduck entry is labeled **Flash 1017** in this comparison. Keep the model version and applicable configuration beside the price when you build a shortlist. Compare the cost of the configuration you plan to use, then judge its answers against your application’s requirements. The budget table compares token costs; it does not claim every host and configuration produces identical results.
 
 ## Turn token rates into your own monthly estimate
 
@@ -100,19 +100,19 @@ Here are the monthly token costs using each provider’s published rates, rounde
 | DeepSeek direct, all peak | $48.72 | $133.53 |
 | Morph, listed all-hours rates | $26.56 | $85.44 |
 | UnificAlly, published rates with 25% peak | $22.84 | $62.59 |
-| Moduck FP4, published model rates | $11.42 | $31.32 |
+| Moduck Flash 1017, published model rates | $11.42 | $31.32 |
 
 ### An assistant can favor different routes at different hours
 
 Morph’s assistant calculation is **80 × $0.12 + 120 × $0.008 + 20 × $0.80 = $26.56**. That sits between DeepSeek direct’s all-off-peak and mixed-period estimates. A nightly document-processing job can be scheduled for the lower rate; a customer waiting for an answer usually cannot. Use the hours your application needs to operate when choosing between those quotes.
 
-For the same assistant workload, Moduck’s published FP4 rates give **80 × $0.03776 + 120 × $0.00128 + 20 × $0.096 = $5.0944**, rounded to $5.09. Use this figure when budgeting for the FP4 configuration in the rate table.
+For the same assistant workload, the Moduck Flash 1017 entry gives **80 × $0.03776 + 120 × $0.00128 + 20 × $0.096 = $5.0944**, rounded to $5.09. Use this figure when budgeting for the Flash 1017 entry in the rate table.
 
 ### Long answers change which rate matters most
 
 The generator uses 45M uncached input, 5M cached input and 100M output tokens. DeepSeek direct costs **45 × $0.15 + 5 × $0.003 + 100 × $0.60 = $66.765** off-peak, or $83.45625 with the assumed 25% peak share. Morph’s $85.44 now sits above both estimates. Its lower uncached-input price does less for an application that spends most of its budget generating answers.
 
-At Moduck’s FP4 rates, the same token volumes cost **45 × $0.03776 + 5 × $0.00128 + 100 × $0.22 = $23.72**. Output accounts for $9.60 of that total; it also accounts for $60 of the direct off-peak total. For this workload, controlling answer length and unnecessary regeneration can matter more than improving the small cached-input share.
+For the Moduck Flash 1017 entry, the same token volumes cost **45 × $0.03776 + 5 × $0.00128 + 100 × $0.22 = $23.72**. Output accounts for $9.60 of that total; it also accounts for $60 of the direct off-peak total. For this workload, controlling answer length and unnecessary regeneration can matter more than improving the small cached-input share.
 
 UnificAlly’s estimates apply its own rate card with the same 25% peak assumption. For example, the generator is **(45 × $0.1125 + 5 × $0.00225 + 100 × $0.45) × 1.25 = $62.5921875**. Moduck’s page lists no separate peak/off-peak prices, so its calculation uses the published rates without a time adjustment.
 
@@ -120,6 +120,6 @@ Replace these assumptions with your measured usage as it becomes available. Keep
 
 ## Choose a route that fits your workload
 
-For schedulable jobs, compare the direct off-peak bill with each provider’s workload total. For interactive applications, use a realistic mix of billing periods. Morph’s input rate deserves a look for reading-heavy work; its higher output rate matters for long answers. Include UnificAlly’s time bands and Moduck’s FP4 configuration when comparing their quotes.
+For schedulable jobs, compare the direct off-peak bill with each provider’s workload total. For interactive applications, use a realistic mix of billing periods. Morph’s input rate deserves a look for reading-heavy work; its higher output rate matters for long answers. Include UnificAlly’s time bands and Moduck’s Flash 1017 entry when comparing their quotes.
 
-If Moduck’s published pricing and FP4 configuration suit your workload, you can [Get API Key](https://moduck.ai/dashboard/api-keys) to begin setup. Sign-in is required; use the [model documentation](https://docs.moduck.ai/en/models/library/text-models-llm/deepseek-ai/deepseek-flash) for integration details.
+If the published pricing for Moduck’s Flash 1017 entry suits your workload, you can [Get API Key](https://moduck.ai/dashboard/api-keys) to begin setup. Sign-in is required; use the [model documentation](https://docs.moduck.ai/en/models/library/text-models-llm/deepseek-ai/deepseek-flash) for integration details.
